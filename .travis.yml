@@ -2,18 +2,20 @@ language: node_js
 node_js: 10
 sudo: false
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-  - export PATH=$HOME/.yarn/bin:$PATH
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+- export PATH=$HOME/.yarn/bin:$PATH
 cache:
   yarn: true
 install:
-  - cd ./functions && yarn install && cd ..
-  - cd ./web && yarn install && cd ..
+- cd ./functions && yarn install && cd ..
+- cd ./web && yarn install && cd ..
 script:
-  - cd ./web && yarn build && cd ..
-  - cd ./web && yarn test && cd ..
+- cd ./web && yarn build && cd ..
+- cd ./web && yarn test && cd ..
 deploy:
   skip_cleanup: true
   provider: firebase
   token:
-    secure: Oq7uG1GOp0J0cVrmHWquxGSgOLD/JRG7eC3Gbio6T6FdrR2jmXmQpIHBDBTG16iY0GUarvuBqT9zetuYYlQ0++T4+F5X5jda8FhupMZ1vjSPlgNWR/IQLFttRNmSuMNPuk/X7IwgDKZ64quvM9dwGLbZxfmyal+bhNLFSg8UhAXHh+6qFXiBcKc7mPDCq6FJOwr1+k+dq6B5k/quH2dEcgamnMDt9pmSMjM5kdo/Y0Q90tXPZKKZJvFYwghBYAt/oSQHfLU6mnRKTmj22lTa8ONBjePqzYxeWltadPFBUZDSFNi1aoEJgAgYOsP+3yS/DxjzK38Kc9b6QfSNWJw4MmMxTG1XSfhtXvWifdLEed8z8mpkyzI6j6ipma5CetUXpt+D5kyEMnTlOba5Njz9SzKqdd1SbzlFYGNrLKWZuyIiBX6Mip2IghOUiiAHOh+yaHnX65JiZ3xo6zOL2FGWOqm13d3Xm2CmE9CAKG+6zYOkcLmy662nnBg/vhzUqw3p4+1NL67xp6uvLq7nTP1OCNpmAbqbvay/P4isbkT/k6oF43zMqEFwM7EgmMDZYs/9h32L9u18bdlvHvWkT0vaSqyq+UFdsBkirpuPar+/BE3AA3LVMQkNdk7WFA9drdq1h5vyKtX/5CU3a49oiGnocIDwBMAairqGjxQiwUUNZQA=
+    secure: SarSMyTHQCfl2miF9OUvocypvjhhYJ0ZyqGFth/22CtpL9ApZM08sT5PwNjgUXYfmG62gNanDr+3m9W+Ti6SqAaOUO7O3s74RiEpFZ4QkbXmfRdmVaKDFdLCcB7+Y73JULmg6b3dBcGPnEulNW6DDeIcNq+w6JdMxbJrT5eJp8qRa28eEd7GQ2KXZ96N4TIqFdfeKgYNieLYIjYSaaF89/XnheI8bj1Ht2crou9jOABA8oa9gY9cFLPJ63C7oLbTjun+sJSiWTMTfebAVl7TzgiZr0ecob1fawbNGIltKZWqkpmHacQXYRN23SKJK38grnoQqjG5coRqHOIH2YStNPj17nH06kXhelruXR9v/0Aj8lxDuVrRT2wGuDk1YiSSFuw3VSM2oiY1QcP6zpqboWgDC9RmrC08PK7r5FxUx2zSmbWufs0oPj/zvbc8f5Dnoe0BSW7yQf6fNFEreoPZUA+8xUUgUvYiHRhttQ2M3GLqp0PX0/MsSF93hynSp/Ptt8gZJWYUmO0R0CUCXyZ09p3v903HmWrcNz9rkG0GoehT7kukGRGGEsN2zcE14aeEh3UqIxjlJVzcr6mHv1DC3jQSiCggEn1sq7Bk9SKc3R0VQHCd2g87HrDuUjwSMNKJezzSQURSbP/rSFG0awqlI9ZxZqxw7T7N0vfSwaztEew=
+  global:
+    secure: SarSMyTHQCfl2miF9OUvocypvjhhYJ0ZyqGFth/22CtpL9ApZM08sT5PwNjgUXYfmG62gNanDr+3m9W+Ti6SqAaOUO7O3s74RiEpFZ4QkbXmfRdmVaKDFdLCcB7+Y73JULmg6b3dBcGPnEulNW6DDeIcNq+w6JdMxbJrT5eJp8qRa28eEd7GQ2KXZ96N4TIqFdfeKgYNieLYIjYSaaF89/XnheI8bj1Ht2crou9jOABA8oa9gY9cFLPJ63C7oLbTjun+sJSiWTMTfebAVl7TzgiZr0ecob1fawbNGIltKZWqkpmHacQXYRN23SKJK38grnoQqjG5coRqHOIH2YStNPj17nH06kXhelruXR9v/0Aj8lxDuVrRT2wGuDk1YiSSFuw3VSM2oiY1QcP6zpqboWgDC9RmrC08PK7r5FxUx2zSmbWufs0oPj/zvbc8f5Dnoe0BSW7yQf6fNFEreoPZUA+8xUUgUvYiHRhttQ2M3GLqp0PX0/MsSF93hynSp/Ptt8gZJWYUmO0R0CUCXyZ09p3v903HmWrcNz9rkG0GoehT7kukGRGGEsN2zcE14aeEh3UqIxjlJVzcr6mHv1DC3jQSiCggEn1sq7Bk9SKc3R0VQHCd2g87HrDuUjwSMNKJezzSQURSbP/rSFG0awqlI9ZxZqxw7T7N0vfSwaztEew=
