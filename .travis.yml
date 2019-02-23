@@ -12,3 +12,8 @@ install:
 script:
   - cd ./web && yarn build && cd ..
   - cd ./web && yarn test && cd ..
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: Oq7uG1GOp0J0cVrmHWquxGSgOLD/JRG7eC3Gbio6T6FdrR2jmXmQpIHBDBTG16iY0GUarvuBqT9zetuYYlQ0++T4+F5X5jda8FhupMZ1vjSPlgNWR/IQLFttRNmSuMNPuk/X7IwgDKZ64quvM9dwGLbZxfmyal+bhNLFSg8UhAXHh+6qFXiBcKc7mPDCq6FJOwr1+k+dq6B5k/quH2dEcgamnMDt9pmSMjM5kdo/Y0Q90tXPZKKZJvFYwghBYAt/oSQHfLU6mnRKTmj22lTa8ONBjePqzYxeWltadPFBUZDSFNi1aoEJgAgYOsP+3yS/DxjzK38Kc9b6QfSNWJw4MmMxTG1XSfhtXvWifdLEed8z8mpkyzI6j6ipma5CetUXpt+D5kyEMnTlOba5Njz9SzKqdd1SbzlFYGNrLKWZuyIiBX6Mip2IghOUiiAHOh+yaHnX65JiZ3xo6zOL2FGWOqm13d3Xm2CmE9CAKG+6zYOkcLmy662nnBg/vhzUqw3p4+1NL67xp6uvLq7nTP1OCNpmAbqbvay/P4isbkT/k6oF43zMqEFwM7EgmMDZYs/9h32L9u18bdlvHvWkT0vaSqyq+UFdsBkirpuPar+/BE3AA3LVMQkNdk7WFA9drdq1h5vyKtX/5CU3a49oiGnocIDwBMAairqGjxQiwUUNZQA=
