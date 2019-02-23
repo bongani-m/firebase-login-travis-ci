@@ -7,11 +7,11 @@ before_install:
 cache:
   yarn: true
 install:
-  - cd ./functions && yarn install && cd ..
-  - cd ./web && yarn install && cd ..
+  - cd functions && yarn install && cd ..
+  - cd web && yarn install && cd ..
 script:
-  - cd ./web && yarn build && cd ..
-  - cd ./web && yarn test && cd ..
+  - cd web && yarn build && cd ..
+  - cd web && yarn test && cd ..
 deploy:
   skip_cleanup: true
   provider: firebase
