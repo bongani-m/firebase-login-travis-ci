@@ -8,7 +8,7 @@ firebase-debug.log*
 
 # Firebase cache
 .firebase/
-/web-client/build
+/web/build
 
 # Firebase config
 
