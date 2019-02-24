@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Landing from '.';
+import Landing from '../components/Landing';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
