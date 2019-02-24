@@ -9,6 +9,7 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  confirmationEmailRedirect: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
 };
 
 class Firebase {
@@ -55,7 +56,7 @@ class Firebase {
 
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
-      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+      url: config.confirmationEmailRedirect,
     });
 
   doPasswordUpdate = password =>
