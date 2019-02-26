@@ -12,17 +12,18 @@ class Messages extends Component {
     this.state = {
       text: '',
       loading: false,
-      messages: [],
       limit: 5,
     };
   }
 
   componentDidMount() {
+    if (!this.props.messages.length) {
+      this.setState({ loading: true });
+    }
     this.onListenForMessages();
   }
 
   onListenForMessages = () => {
-    this.setState({ loading: true });
 
     this.unsubscribe = this.props.firebase
       .messages()
@@ -31,16 +32,15 @@ class Messages extends Component {
       .onSnapshot(snapshot => {
         if (snapshot.size) {
           let messages = [];
-          snapshot.forEach(doc =>
-            messages.push({ ...doc.data(), uid: doc.id }),
-          );
-
+          snapshot.forEach(doc => {
+            messages.push({ ...doc.data(), uid: doc.id });
+          });
+        this.props.onSetMessages( messages);
           this.setState({
-            messages: messages.reverse(),
             loading: false,
           });
         } else {
-          this.setState({ messages: null, loading: false });
+          this.setState({ loading: false });
         }
       });
   };
@@ -85,9 +85,8 @@ class Messages extends Component {
   };
 
   render() {
-    const { users, messages } = this.props;
+    const { messages } = this.props;
     const { text, loading } = this.state;
-
     return (
       <div>
         {!loading && messages && (
@@ -102,9 +101,7 @@ class Messages extends Component {
           <MessageList
             messages={messages.map(message => ({
               ...message,
-              user: users
-                ? users[message.userId]
-                : { userId: message.userId },
+              user: { userId: message.userId },
             }))}
             onEditMessage={this.onEditMessage}
             onRemoveMessage={this.onRemoveMessage}
@@ -135,15 +132,16 @@ const mapStateToProps = state => ({
   messages: Object.keys(state.messageState.messages || {}).map(
     key => ({
       ...state.messageState.messages[key],
-      uid: key,
     }),
   ),
   limit: state.messageState.limit,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetMessages: messages =>
-    dispatch({ type: 'MESSAGES_SET', messages }),
+  onSetMessages: messages =>{
+    console.log(messages)
+    dispatch({ type: 'MESSAGES_SET', messages })
+  },
   onSetMessagesLimit: limit =>
     dispatch({ type: 'MESSAGES_LIMIT_SET', limit }),
 });
